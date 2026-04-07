@@ -6,8 +6,14 @@ import RequestLogTable from "../components/dashboard/RequestLogTable";
 
 const handleExport = () => {
   const token = localStorage.getItem("token");
-  const url = `${import.meta.env.VITE_API_URL || "http://localhost:8000/api"}/analytics/export`;
-  fetch(url, { headers: { Authorization: `Bearer ${token}` } })
+
+  const url = "https://apihub-production-1165.up.railway.app/api/analytics/export";
+
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((res) => res.blob())
     .then((blob) => {
       const a = document.createElement("a");
